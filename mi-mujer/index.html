@@ -46,28 +46,22 @@
 
     .message {
       font-size: 1em;
-      border-right: 3px solid white;
-      white-space: nowrap;
-      overflow: hidden;
-      width: 0;
+      opacity: 0;
       margin: 20px auto 0;
-      animation:
-        typing 6s steps(80, end) 2s forwards,
-        blink 0.75s step-end infinite;
+      animation: fadeInText 3s ease-in-out 2s forwards;
+      max-width: 100%;
+      line-height: 1.5em;
+      white-space: normal;
+      word-wrap: break-word;
     }
 
     @keyframes fadeIn {
       to { opacity: 1; }
     }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: white; }
+    @keyframes fadeInText {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .emoji-heart {
