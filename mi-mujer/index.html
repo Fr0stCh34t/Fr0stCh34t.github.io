@@ -137,7 +137,7 @@
       { bottom: '10px', right: '10px' }
     ];
 
-    const images = ['foto1.png', 'foto2.png', 'foto3.png', 'foto4.png', 'foto5.png'];
+    const images = ['foto1.png', 'foto2.png', 'foto3.png', 'foto4.png', 'foto5.png', 'foto6.png', 'foto7.png', 'foto8.png'];
     const popup = document.getElementById('popupImage');
     let giftElement = null;
 
@@ -180,11 +180,11 @@
       setTimeout(() => {
         gift.remove();
         giftElement = null;
-        setTimeout(showGift, 5000); // aparece el próximo regalo
+        setTimeout(showGift, 5000);
       }, 5000);
     }
 
-    setTimeout(showGift, 5000); // primer regalo aparece tras 5s
+    setTimeout(showGift, 5000);
   </script>
 
 </body>
