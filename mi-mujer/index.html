@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para Sharon ❣</title>
+  <title>Para Sharon Nicol ❣</title>
   <style>
     body {
       margin: 0;
@@ -11,24 +11,47 @@
       font-family: 'Segoe UI', sans-serif;
     }
 
-    .message {
+    .container {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: white;
-      font-size: 2em;
       text-align: center;
-      animation: fadeIn 4s ease-in-out forwards;
-      opacity: 0;
-      text-shadow: 2px 2px 6px #e91e63;
+      color: white;
       padding: 0 20px;
+      text-shadow: 2px 2px 6px #e91e63;
+    }
+
+    .name {
+      font-size: 2.5em;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
     }
 
     @keyframes fadeIn {
       to {
         opacity: 1;
       }
+    }
+
+    .message {
+      font-size: 1.8em;
+      border-right: 3px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      margin: 20px auto 0;
+      animation: typing 6s steps(60, end) 3s forwards, blink 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: white }
     }
 
     .heart {
@@ -38,6 +61,7 @@
       background: pink;
       transform: rotate(45deg);
       animation: float 8s linear infinite;
+      opacity: 0.8;
     }
 
     .heart::before,
@@ -63,7 +87,7 @@
     @keyframes float {
       0% {
         transform: translateY(100vh) rotate(45deg);
-        opacity: 1;
+        opacity: 0.8;
       }
       100% {
         transform: translateY(-10vh) rotate(45deg);
@@ -74,7 +98,10 @@
 </head>
 <body>
 
-  <div class="message">Eres el amor de mi vida,<br>te amo con todo mi ser mi vida ❣</div>
+  <div class="container">
+    <div class="name">Sharon Nicol 💖</div>
+    <div class="message">Eres el amor de mi vida, te amo con todo mi ser mi vida ❣</div>
+  </div>
 
   <script>
     function createHeart() {
@@ -86,7 +113,7 @@
       setTimeout(() => heart.remove(), 8000);
     }
 
-    setInterval(createHeart, 300);
+    setInterval(createHeart, 250);
   </script>
 
 </body>
