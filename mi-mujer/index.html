@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Para Sharon Nicol ❣</title>
   <style>
@@ -23,23 +23,34 @@
       padding: 0 20px;
       text-shadow: 2px 2px 6px #c2185b;
       max-width: 90%;
+      z-index: 1;
     }
 
     .name {
-      font-size: 2.2em;
+      font-size: 2.3em;
       font-weight: bold;
       opacity: 0;
       animation: fadeIn 2s forwards;
     }
 
+    .alias {
+      font-size: 1.3em;
+      font-style: italic;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+      margin-top: 5px;
+    }
+
     .message {
-      font-size: 1.5em;
+      font-size: 1.2em;
       border-right: 3px solid white;
       white-space: nowrap;
       overflow: hidden;
       width: 0;
       margin: 20px auto 0;
-      animation: typing 6s steps(50, end) 2s forwards, blink 0.75s step-end infinite;
+      animation: typing 9s steps(90, end) 3s forwards, blink 0.75s step-end infinite;
     }
 
     @keyframes fadeIn {
@@ -62,6 +73,7 @@
       animation: floatEmoji 6s linear infinite;
       user-select: none;
       opacity: 0.7;
+      z-index: 0;
     }
 
     @keyframes floatEmoji {
@@ -74,16 +86,61 @@
         opacity: 0;
       }
     }
+
+    .gift-emoji {
+      position: absolute;
+      font-size: 3em;
+      cursor: pointer;
+      transition: transform 0.3s;
+      z-index: 2;
+    }
+
+    .gift-emoji:hover {
+      transform: scale(1.2);
+    }
+
+    .image-popup {
+      position: absolute;
+      max-width: 80vw;
+      max-height: 80vh;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.5s ease;
+      z-index: 3;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .image-popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
     <div class="name">Sharon Nicol ❣</div>
-    <div class="message">Eres el amor de mi vida, te amo con todo mi ser mi vida ❣</div>
+    <div class="alias">Alias el amor de mi vida</div>
+    <div class="message">
+      Tal vez no sea el mejor hombre para ti mi amor, pero sí espero ser alguien que marque un granito de arena en tu vida. Te amo mujer, nunca lo olvides ❣
+    </div>
   </div>
 
+  <img id="popupImage" class="image-popup" src="" alt="Sorpresa">
+
   <script>
+    const corners = [
+      { top: '10px', left: '10px' },
+      { top: '10px', right: '10px' },
+      { bottom: '10px', left: '10px' },
+      { bottom: '10px', right: '10px' }
+    ];
+
+    const images = ['foto1.png', 'foto2.png', 'foto3.png', 'foto4.png', 'foto5.png'];
+    const popup = document.getElementById('popupImage');
+    let giftElement = null;
+
     function createEmojiHeart() {
       const heart = document.createElement('div');
       heart.classList.add('emoji-heart');
@@ -96,6 +153,38 @@
     }
 
     setInterval(createEmojiHeart, 300);
+
+    function showGift() {
+      if (giftElement) giftElement.remove();
+
+      const gift = document.createElement('div');
+      gift.className = 'gift-emoji';
+      gift.textContent = '🎁';
+
+      const position = corners[Math.floor(Math.random() * corners.length)];
+      Object.assign(gift.style, position);
+
+      gift.onclick = () => {
+        const img = images[Math.floor(Math.random() * images.length)];
+        popup.src = img;
+        popup.classList.add('show');
+
+        setTimeout(() => {
+          popup.classList.remove('show');
+        }, 5000);
+      };
+
+      document.body.appendChild(gift);
+      giftElement = gift;
+
+      setTimeout(() => {
+        gift.remove();
+        giftElement = null;
+        setTimeout(showGift, 5000); // aparece el próximo regalo
+      }, 5000);
+    }
+
+    setTimeout(showGift, 5000); // primer regalo aparece tras 5s
   </script>
 
 </body>
