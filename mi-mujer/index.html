@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Sharon ❣</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(circle, #ffb6c1, #ff69b4);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2em;
+      text-align: center;
+      animation: fadeIn 4s ease-in-out forwards;
+      opacity: 0;
+      text-shadow: 2px 2px 6px #e91e63;
+      padding: 0 20px;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: float 8s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message">Eres el amor de mi vida,<br>te amo con todo mi ser mi vida ❣</div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
